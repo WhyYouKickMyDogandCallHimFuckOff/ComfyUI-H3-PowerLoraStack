@@ -89,13 +89,14 @@ function makeLoraWidget(node, name, value) {
     hitAreas: {},
 
     computeSize() {
-      return [node.size[0], ROW_HEIGHT];
+      return [240, ROW_HEIGHT];
     },
 
     draw(ctx, node_, widgetWidth, y, height) {
       const margin = MARGIN;
       const left = margin;
-      const right = widgetWidth - margin;
+      const nodeWidth = (node_ && node_.size && node_.size[0]) || widgetWidth;
+      const right = Math.min(widgetWidth || nodeWidth, nodeWidth) - margin;
       const midY = y + height / 2;
       ctx.save();
 
